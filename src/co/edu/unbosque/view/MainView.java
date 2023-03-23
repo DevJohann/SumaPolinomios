@@ -22,4 +22,12 @@ public class MainView extends JFrame {
 
 	}
 
+	public MainPanel getMainPanel() {
+		return mainPanel;
+	}
+
+	public void setMainPanel(MainPanel mainPanel) {
+		this.mainPanel = mainPanel;
+	}
+
 }
