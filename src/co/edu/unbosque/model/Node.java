@@ -5,6 +5,7 @@ public class Node {
 	private Node next;
 	private int pow;
 	private int coef;
+	private boolean ready = false;
 
 	public Node(int coef, int pow) {
 		this.coef = coef;
@@ -34,6 +35,14 @@ public class Node {
 
 	public void setCoef(int coef) {
 		this.coef = coef;
+	}
+
+	public boolean isReady() {
+		return ready;
+	}
+
+	public void setReady(boolean ready) {
+		this.ready = ready;
 	}
 
 }

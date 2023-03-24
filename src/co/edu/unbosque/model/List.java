@@ -1,5 +1,7 @@
 package co.edu.unbosque.model;
 
+import javax.swing.JOptionPane;
+
 public class List {
 
 	private Node root1;
@@ -9,6 +11,17 @@ public class List {
 	public List() {
 		root1 = null;
 		root2 = null;
+	}
+
+	public void displayResult() {
+		Node aux = rootResult;
+		String str = "";
+		while (aux != null) {
+			str += (aux.getCoef() + "x^" + aux.getPow() + " + ");
+			aux = aux.getNext();
+		}
+		JOptionPane.showMessageDialog(null, str);
+		System.out.println(str);
 	}
 
 	public void insertToFinal1(int coef, int pow) {
@@ -82,16 +95,33 @@ public class List {
 			System.out.println("Comparando " + auxList1.getCoef());
 			while (auxList2 != null) {
 				System.out.println("Con " + auxList2.getCoef());
-				if (auxList1.getPow() == auxList2.getPow()) { // Caso en que exponentes coincidan, coeficientes se suman
+				if ((auxList1.getPow() == auxList2.getPow()) && (!auxList1.isReady() && !auxList2.isReady())) { // Caso
+					// coincidan, coeficientes
+					// se suman
 					int res = auxList1.getCoef() + auxList2.getCoef();
 					insertToFinalResult(res, auxList1.getPow());
-				} // else { // Si no coinciden, no se suman y se añade a la lista igual
-					// insertToFinalResult(auxList2.getCoef(), auxList2.getPow());
-					// }
+					auxList1.setReady(true);
+					auxList2.setReady(true);
+				}
 				auxList2 = auxList2.getNext();
 			}
 			auxList2 = root2;
 			auxList1 = auxList1.getNext();
+		}
+		// Recoger los que se quedaron en false
+		auxList1 = root1;
+		auxList2 = root2;
+		while (auxList1 != null) {
+			if (!auxList1.isReady()) {
+				insertToFinalResult(auxList1.getCoef(), auxList1.getPow());
+			}
+			auxList1 = auxList1.getNext();
+		}
+		while (auxList2 != null) {
+			if (!auxList2.isReady()) {
+				insertToFinalResult(auxList2.getCoef(), auxList2.getPow());
+			}
+			auxList2 = auxList2.getNext();
 		}
 	}
 
