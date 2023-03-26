@@ -16,11 +16,13 @@ public class List {
 	public void displayResult() {
 		Node aux = rootResult;
 		String str = "";
+		int cont = 0;
 		while (aux != null) {
 			str += (aux.getCoef() + "x^" + aux.getPow() + " + ");
 			aux = aux.getNext();
+			cont++;
 		}
-		JOptionPane.showMessageDialog(null, str);
+		JOptionPane.showMessageDialog(null, str.substring(0, str.length()-2));
 		System.out.println(str);
 	}
 

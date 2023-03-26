@@ -47,8 +47,6 @@ public class Controller implements ActionListener {
 		switch (e.getActionCommand()) {
 
 		case "Sumar":
-			boolean b = CheckFormat.letterFormat("-21");
-			System.out.println(b);
 
 			String pow11 = view.getMainPanel().getPowField11().getText();
 			String pow12 = view.getMainPanel().getPowField12().getText();
